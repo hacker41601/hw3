@@ -52,4 +52,12 @@ test_feat = normalize(test01)
 test_label = test01.iloc[:,0]
 #print(test_cat)
 
+train_feat = np.array(train_feat)
+train_label = np.array(train_label)
+
+test_feat = np.array(test_feat)
+test_label = np.array(test_label)
+
+weights = []
+bias = []
 
