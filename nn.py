@@ -18,7 +18,7 @@ epoch = 42
 hidden_layers = 1
 hidden_nodes = 2
 output_nodes = 1
-total_layers = hidden_layers + 1
+total_layers = hidden_layers + 1 #output layer as well
 
 #activation function
 def sigmoid(exponent):
@@ -32,13 +32,24 @@ test01 = pd.read_csv('mnist_test_0_1.csv')
 #train04 = pd.read_csv('mnist_train_0_4.csv')
 #test04 = pd.read_csv('mnist_test_0_4.csv')
 
+#print(train01)
+#print(train01.drop(train01.columns[[0]], axis = 1))
+
 #normalize the features after column 1 b/c the first column is the labels
 def normalize(dataset):
     norm_dataset = dataset.copy(deep = True)
-    norm_dataset[1:]/255
+    norm_dataset = norm_dataset.drop(norm_dataset.columns[[0]], axis = 1)
+    norm_dataset/255
     return norm_dataset
 
-print(normalize(train01))
-print(normalize(test01))
+train_feat = normalize(train01)
+#print(train_feat)
+train_cat = train01.iloc[:,0]
+#print(train_cat)
+
+test_feat = normalize(test01)
+#print(test_feat)
+test_cat = test01.iloc[:,0]
+#print(test_cat)
 
 
