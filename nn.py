@@ -44,12 +44,12 @@ def normalize(dataset):
 
 train_feat = normalize(train01)
 #print(train_feat)
-train_cat = train01.iloc[:,0]
+train_label = train01.iloc[:,0]
 #print(train_cat)
 
 test_feat = normalize(test01)
 #print(test_feat)
-test_cat = test01.iloc[:,0]
+test_label = test01.iloc[:,0]
 #print(test_cat)
 
 
