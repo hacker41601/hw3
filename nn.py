@@ -19,10 +19,10 @@
 
 import numpy as np
 import pandas as pd
-import difflib
+import difflib #thanks to Thomas Dimeny for showing me this useful library!
 
 #hyperparameters
-alpha = .1
+alpha = .001
 epoch = 42
 
 #activation function
