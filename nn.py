@@ -36,7 +36,7 @@ def normalize(dataset):
     norm_dataset = dataset.copy(deep = True)
     norm_dataset = norm_dataset.drop(norm_dataset.columns[[0]], axis = 1)
     norm_dataset/255
-    return norm_dataset
+    return round(norm_dataset)
 
 train_feat = normalize(train01)
 #print(train_feat)
@@ -69,5 +69,44 @@ for i in range(2):
         bias.append(np.random.uniform(-1, 1, (1,1)))
     
     print(str(i))
+    print(type(bias[i]))
     print(bias[i].shape)
     print(weights[i].shape)
+
+for curr_epoch in range(epoch):
+    for i, ex in enumerate(train_feat): #enumerate loops over an interable object and keeps track of how many iterations have occured
+        #begin forward pass
+        features = train_feat[i]
+        #print(features.shape)
+        ground_truth = float(train_label[i])
+        #print(ground_truth)
+        output = []
+        for j in range(2):
+            if j == 0:
+                prod = np.transpose(weights[j]).dot(features)
+            else:
+                prod = np.transpose(weights[j]).dot(output[j-1])
+            input = prod + np.transpose(bias[j])
+            input = np.transpose(input)
+            input = np.array(input)
+            sigmoid(input)
+            output.append(input)
+            #print(output)
+            #print(output[j].shape)
+        output = float(output[-1])
+        #print(output)
+        raw_error = ground_truth - output
+        #print(error)
+        #not sure if the logic is there will ask Thomas/Dr. Harrison
+        
+        #help here
+        #backprop stuff
+        deltas = []
+        for k in reversed(range(2)):
+            if k == 1:
+                delta = raw_error * (output * (1-output)) #scalar operation
+            else:
+                delta = weights[k+1].dot(deltas[0]) * (output[k] * (1-output[k]))
+                delta = np.array(delta)
+            deltas.insert(0, delta)
+            print(deltas[0])
