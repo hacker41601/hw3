@@ -15,10 +15,6 @@ import math
 #hyperparameters
 alpha = .001
 epoch = 42
-hidden_layers = 1
-hidden_nodes = 2
-output_nodes = 1
-total_layers = hidden_layers + 1 #output layer as well
 
 #activation function
 def sigmoid(exponent):
@@ -61,3 +57,17 @@ test_label = np.array(test_label)
 weights = []
 bias = []
 
+for i in range(2):
+    if i == 0: #first layer aka input layer
+        weights.append(np.random.uniform(-1, 1, (len(test_feat[i]), 2)))
+        bias.append(np.random.uniform(-1, 1, (2,1)))
+    elif i != 1: #hidden layer
+        weights.append(np.random.uniform(-1, 1, (2, 2)))
+        bias.append(np.random.uniform(-1, 1, (2,1)))
+    else: #output aka last layer
+        weights.append(np.random.uniform(-1, 1, (2,1)))
+        bias.append(np.random.uniform(-1, 1, (1,1)))
+    
+    print(str(i))
+    print(bias[i].shape)
+    print(weights[i].shape)
