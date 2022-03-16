@@ -36,7 +36,7 @@ def normalize(dataset):
     norm_dataset = dataset.copy(deep = True)
     norm_dataset = norm_dataset.drop(norm_dataset.columns[[0]], axis = 1)
     norm_dataset/255
-    return round(norm_dataset)
+    return round(norm_dataset) #round to make it either 1 or 0
 
 train_feat = normalize(train01)
 #print(train_feat)
@@ -57,6 +57,7 @@ test_label = np.array(test_label)
 weights = []
 bias = []
 
+#double check make sure this is correct
 for i in range(2):
     if i == 0: #first layer aka input layer
         weights.append(np.random.uniform(-1, 1, (len(test_feat[i]), 2)))
@@ -89,6 +90,7 @@ for curr_epoch in range(epoch):
             input = prod + np.transpose(bias[j])
             input = np.transpose(input)
             input = np.array(input)
+            #print(input)
             sigmoid(input)
             output.append(input)
             #print(output)
@@ -98,8 +100,7 @@ for curr_epoch in range(epoch):
         raw_error = ground_truth - output
         #print(error)
         #not sure if the logic is there will ask Thomas/Dr. Harrison
-        
-        #help here
+        '''
         #backprop stuff
         deltas = []
         for k in reversed(range(2)):
@@ -110,3 +111,4 @@ for curr_epoch in range(epoch):
                 delta = np.array(delta)
             deltas.insert(0, delta)
             print(deltas[0])
+'''
