@@ -91,14 +91,14 @@ for curr_epoch in range(epoch):
             input = np.transpose(input)
             input = np.array(input)
             #print(input)
-            sigmoid(input)
-            output.append(input)
+            activated = sigmoid(input)
+            output.append(activated)
             #print(output)
             #print(output[j].shape)
         output = float(output[-1])
         #print(output)
         raw_error = ground_truth - output
-        #print(error)
+        #print(raw_error)
         #not sure if the logic is there will ask Thomas/Dr. Harrison
         '''
         #backprop stuff
