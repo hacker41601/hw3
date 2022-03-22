@@ -16,6 +16,7 @@
 #needs at least one hidden layer and nodes, the more layers and nodes: the more accurate
 #activation function is the sigmoid!
 #need to include accuracy
+#for this, the code is a modified version of Dr. Harrison's pseudocode given in class
 
 import numpy as np
 import pandas as pd
@@ -34,7 +35,7 @@ def sigmoid(exponent):
 train_data = pd.read_csv('mnist_train_0_1.csv', header = None)
 test_data = pd.read_csv('mnist_test_0_1.csv', header = None)
 
-#normalize the features after column 1 b/c the first column is the labels
+#normalize the features b/c some are really large numbers
 def normalize(dataset):
     normalized = dataset/255
     return normalized
@@ -48,10 +49,10 @@ output_weights = []
 
 #785 features
 for i in range(785):
-    hidden_weights.append(list(np.random.uniform(-1,1,4)))
+    hidden_weights.append(list(np.random.uniform(-1,1,3)))
 
 #number of hidden nodes
-for i in range(4):
+for i in range(3):
     output_weights.append(np.random.uniform(-1,1))
 
 #take from linear regression proj
@@ -76,7 +77,7 @@ for data in range(400):
         gradient_hidden = np.transpose(gradient_hidden)
         
         temp_output = output_weights
-        for i in range(4):
+        for i in range(3):
             output_weights[i] = temp_output[i] + alpha * hidden_output[i] * delta_output
             
         temp_hidden = hidden_weights
