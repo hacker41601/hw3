@@ -20,8 +20,10 @@
 
 import numpy as np
 import pandas as pd
+#import warnings
 import difflib
 #thanks to Thomas Dimeny for showing me this useful library!
+#warnings.filterwarnings('ignore')
 
 #hyperparameters
 alpha = .001
@@ -81,6 +83,7 @@ for data in range(1000):
         gradient_hidden = np.outer(delta_hidden, input)
         gradient_hidden = np.transpose(gradient_hidden)
         
+        #updating weights
         temp_output = output_weights
         for i in range(3):
             output_weights[i] = temp_output[i] + alpha * hidden_output[i] * delta_output
