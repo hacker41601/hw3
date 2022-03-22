@@ -20,7 +20,8 @@
 
 import numpy as np
 import pandas as pd
-import difflib #thanks to Thomas Dimeny for showing me this useful library!
+import difflib
+#thanks to Thomas Dimeny for showing me this useful library!
 
 #hyperparameters
 alpha = .001
@@ -29,11 +30,15 @@ epoch = 42
 #activation function
 def sigmoid(exponent):
     return 1/(1 + np.exp(-exponent))
-#print(sigmoid(2)) #it works great moving on
+#print(sigmoid(2))
+#it works great moving on
 
 #reading in dataframe
 train_data = pd.read_csv('mnist_train_0_1.csv', header = None)
 test_data = pd.read_csv('mnist_test_0_1.csv', header = None)
+
+#print(train_data.shape) #12665x785
+#print(test_data.shape) #2115x785
 
 #normalize the features b/c some are really large numbers
 def normalize(dataset):
@@ -56,7 +61,7 @@ for i in range(3):
     output_weights.append(np.random.uniform(-1,1))
 
 #take from linear regression proj
-for data in range(400):
+for data in range(1000):
     input = train_data.iloc[data]
     label = input[0]
     labels.append(label)
@@ -112,6 +117,5 @@ for data in range(1000):
     predictions.append(overall_output)
     
 sm=difflib.SequenceMatcher(None, test_labels, predictions, autojunk = False)
-    
 print(sm.ratio()*100)
 
