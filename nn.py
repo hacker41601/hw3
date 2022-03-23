@@ -53,16 +53,17 @@ outputs = []
 
 hidden_weights = []
 output_weights = []
+num_nodes = 3
 
 #785 features
 for i in range(785):
-    hidden_weights.append(list(np.random.uniform(-1,1,3)))
+    hidden_weights.append(list(np.random.uniform(-1,1,num_nodes)))
 
 #number of hidden nodes
-for i in range(3):
+for i in range(num_nodes):
     output_weights.append(np.random.uniform(-1,1))
 
-#take from linear regression proj
+#take from linear regression proj and pseudocode
 for data in range(1000):
     input = train_data.iloc[data]
     label = input[0]
@@ -85,7 +86,7 @@ for data in range(1000):
         
         #updating weights
         temp_output = output_weights
-        for i in range(3):
+        for i in range(num_nodes):
             output_weights[i] = temp_output[i] + alpha * hidden_output[i] * delta_output
             
         temp_hidden = hidden_weights
