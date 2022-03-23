@@ -27,7 +27,7 @@ import difflib
 
 #hyperparameters
 alpha = .001
-epoch = 42
+epoch = 10
 
 #activation function
 def sigmoid(exponent):
@@ -64,7 +64,7 @@ for i in range(num_nodes):
     output_weights.append(np.random.uniform(-1,1))
 
 #take from linear regression proj and pseudocode
-for data in range(1000):
+for data in range(12665):
     input = train_data.iloc[data]
     label = input[0]
     labels.append(label)
@@ -104,7 +104,7 @@ for data in range(1000):
 #begin test
 test_labels = []
 predictions = []
-for data in range(1000):
+for data in range(2115):
     test_input = test_data.iloc[data]
     test_label = test_input[0]
     test_labels.append(test_label)
