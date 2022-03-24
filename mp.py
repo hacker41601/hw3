@@ -20,7 +20,7 @@ import difflib
 
 #hyperparameters
 alpha = .001
-epoch = 1
+epoch = 10
 
 #activation function using sigmoid equation but with numpy functions
 def sigmoid(exponent):
@@ -60,6 +60,7 @@ for data in range(12665):
     input = train_data.iloc[data]
     label = input[0]
     labels.append(label)
+    #labels.append(input[0]) this messes it all up for some reason
     input = input.to_numpy()
     #replace first column with bias of ones rather than inserting ANOTHER column since the labels are already stored in the array
     input[0] = 1
@@ -99,6 +100,7 @@ for data in range(2115):
     test_input = test_data.iloc[data]
     test_label = test_input[0]
     test_labels.append(test_label)
+    #test_labels.append(input[0]) this messes it all up for some reason
     test_input = test_input.to_numpy()
     test_input[0] = 1
     test_input = normalize(test_input)
