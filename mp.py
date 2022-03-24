@@ -7,15 +7,6 @@
 #needs at least one hidden layer and nodes, the more layers and nodes: the more accurate
 #activation function is the sigmoid!
 #need to include accuracy
-#Author: Monynich Kiem
-#Date: 03/08/2022
-#Desc: CS460G Multilayer Perceptrons
-#using MNIST dataset
-#each training example consists of csvs with 785 features, the first is a numeric label and the rest are image pixels
-#can have single or multiple output nodes
-#needs at least one hidden layer and nodes, the more layers and nodes: the more accurate
-#activation function is the sigmoid!
-#need to include accuracy
 #for this, the code is a modified version of Dr. Harrison's pseudocode given in class
 
 import numpy as np
