@@ -103,7 +103,7 @@ for data in range(2115):
     test_input[0] = 1
     test_input = normalize(test_input)
     
-    #only need forward pass
+    #only need forward pass using the train data!!!
     hidden_input = np.dot(list(np.array(final_hidden).transpose()), test_input)
     hidden_output = list(map(sigmoid, hidden_input))
     overall_output = sigmoid(np.dot(final_output, hidden_output))
