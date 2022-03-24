@@ -15,21 +15,22 @@ import pandas as pd
 import difflib
 #thanks to Thomas Dimeny for showing me this useful library!
 #warnings.filterwarnings('ignore')
+#originally had epoch as 42, but that took several minutes to compute
+#tried larger alphas but ended up in overflow errors
 
 #hyperparameters
 alpha = .001
 epoch = 10
 
-#activation function
+#activation function using sigmoid equation but with numpy functions
 def sigmoid(exponent):
     return 1/(1 + np.exp(-exponent))
 #print(sigmoid(2))
 #it works great moving on
 
-#reading in dataframe
+#reading in dataframes
 train_data = pd.read_csv('mnist_train_0_1.csv', header = None)
 test_data = pd.read_csv('mnist_test_0_1.csv', header = None)
-
 #print(train_data.shape) #12665x785
 #print(test_data.shape) #2115x785
 
@@ -39,9 +40,9 @@ def normalize(dataset):
     return normalized
 
 #begin train:
+#initialize arrays for labels, outputs, hidden weights, and output weights, as well as number of nodes
 labels = []
 outputs = []
-
 hidden_weights = []
 output_weights = []
 num_nodes = 3
@@ -60,26 +61,26 @@ for data in range(12665):
     label = input[0]
     labels.append(label)
     input = input.to_numpy()
+    #replace first column with bias of ones rather than inserting ANOTHER column since the labels are already stored in the array
     input[0] = 1
-    input = normalize(input)
+    input = normalize(input) #normalize the data or else it gets all wonky
     curr_epoch = 0
     while curr_epoch <= epoch:
-    #begin forward pass
+    #begin forward pass from Dr. Harrison's code
         hidden_input = np.dot(list(np.array(hidden_weights).transpose()), input)
         hidden_output = list(map(sigmoid, hidden_input))
         overall_output = sigmoid(np.dot(output_weights, hidden_output))
         
-    #begin back prop
+    #begin back prop from Dr. Harrison's code
         delta_output = (label - overall_output) * (overall_output) * (1 - overall_output)
         delta_hidden = np.dot(delta_output, output_weights)
         gradient_hidden = np.outer(delta_hidden, input)
         gradient_hidden = np.transpose(gradient_hidden)
         
-        #updating weights
+        #updating weights similar to linear regression
         temp_output = output_weights
         for i in range(num_nodes):
             output_weights[i] = temp_output[i] + alpha * hidden_output[i] * delta_output
-            
         temp_hidden = hidden_weights
         for i in range(785):
             hidden_weights[i] = temp_hidden[i] + alpha * input[i] * gradient_hidden[i]
@@ -87,8 +88,10 @@ for data in range(12665):
         overall_output = round(overall_output)
         #print(overall_output)
         curr_epoch += 1
-        if curr_epoch == epoch:
-            outputs.append(overall_output)
+        #if curr_epoch == epoch:
+        #    outputs.append(overall_output)
+        #print(outputs)
+            
     final_hidden = hidden_weights
     final_output = output_weights
 
@@ -106,10 +109,8 @@ for data in range(2115):
     #only need forward pass
     hidden_input = np.dot(list(np.array(final_hidden).transpose()), test_input)
     hidden_output = list(map(sigmoid, hidden_input))
-    
     overall_output = sigmoid(np.dot(final_output, hidden_output))
     overall_output = round(overall_output)
-    
     predictions.append(overall_output)
 
 #https://stackoverflow.com/questions/12436672/how-does-sequencematcher-ratio-works-in-difflib
