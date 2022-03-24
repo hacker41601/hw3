@@ -46,9 +46,11 @@ outputs = []
 hidden_weights = []
 output_weights = []
 num_nodes = 3
+num_feat = len(train_data.columns)
+#print(num_feat)
 
 #785 features
-for i in range(785):
+for i in range(num_feat):
     hidden_weights.append(list(np.random.uniform(-1,1,num_nodes)))
 
 #number of hidden nodes
@@ -57,6 +59,7 @@ for i in range(num_nodes):
 
 #take from linear regression proj and pseudocode
 for data in range(12665):
+    #separate labels and inputs, replace labels with bias column!!!
     input = train_data.iloc[data]
     label = input[0]
     labels.append(label)
