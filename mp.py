@@ -41,7 +41,7 @@ test_data = pd.read_csv('mnist_test_0_1.csv', header = None)
 
 #begin train:
 #initialize arrays for labels, outputs, hidden weights, and output weights, as well as number of nodes
-labels = []
+labels= []
 outputs = []
 hidden_weights = []
 output_weights = []
@@ -86,7 +86,7 @@ for data in range(12665):
             hidden_weights[i] = temp_hidden[i] + alpha * input[i] * gradient_hidden[i]
         
         overall_output = round(overall_output)
-        #print(overall_output)
+        print(overall_output)
         curr_epoch += 1
             
     final_hidden = hidden_weights
@@ -108,6 +108,7 @@ for data in range(2115):
     hidden_output = list(map(sigmoid, hidden_input))
     overall_output = sigmoid(np.dot(final_output, hidden_output))
     overall_output = round(overall_output)
+    print(overall_output)
     predictions.append(overall_output)
 
 #https://stackoverflow.com/questions/12436672/how-does-sequencematcher-ratio-works-in-difflib
