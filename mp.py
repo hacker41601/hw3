@@ -112,5 +112,8 @@ for data in range(2115):
 
 #https://stackoverflow.com/questions/12436672/how-does-sequencematcher-ratio-works-in-difflib
 sm=difflib.SequenceMatcher(None, test_labels, predictions, autojunk = False)
+print("Accuracy: ")
 print(sm.ratio()*100)
-
+print(" ")
+print("Error: ")
+print(100 - (sm.ratio()*100))
