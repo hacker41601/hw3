@@ -41,7 +41,8 @@ test_data = pd.read_csv('mnist_test_0_1.csv', header = None)
 
 #begin train:
 #initialize arrays for labels, outputs, hidden weights, and output weights, as well as number of nodes
-labels, outputs = [], []
+labels = []
+outputs = []
 hidden_weights = []
 output_weights = []
 num_nodes = 3
@@ -92,7 +93,8 @@ for data in range(12665):
     final_output = output_weights
 
 #begin test
-test_labels, predictions = [], []
+test_labels = []
+predictions = []
 for data in range(2115):
     test_input = test_data.iloc[data]
     test_label = test_input[0]
