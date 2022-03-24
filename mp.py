@@ -88,9 +88,6 @@ for data in range(12665):
         overall_output = round(overall_output)
         #print(overall_output)
         curr_epoch += 1
-        #if curr_epoch == epoch:
-        #    outputs.append(overall_output)
-        #print(outputs)
             
     final_hidden = hidden_weights
     final_output = output_weights
