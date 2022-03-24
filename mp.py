@@ -28,16 +28,16 @@ def sigmoid(exponent):
 #print(sigmoid(2))
 #it works great moving on
 
+#normalize the features b/c some are really large numbers
+def normalize(dataset):
+    normalized = dataset/255
+    return normalized
+
 #reading in dataframes
 train_data = pd.read_csv('mnist_train_0_1.csv', header = None)
 test_data = pd.read_csv('mnist_test_0_1.csv', header = None)
 #print(train_data.shape) #12665x785
 #print(test_data.shape) #2115x785
-
-#normalize the features b/c some are really large numbers
-def normalize(dataset):
-    normalized = dataset/255
-    return normalized
 
 #begin train:
 #initialize arrays for labels, outputs, hidden weights, and output weights, as well as number of nodes
