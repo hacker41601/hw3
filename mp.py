@@ -61,18 +61,19 @@ for i in range(num_nodes):
     output_weights.append(np.random.uniform(-1,1))
 
 #take from linear regression proj and pseudocode
-for data in range(len(train_data)):
+curr_epoch = 0
+while curr_epoch <= epoch:
+    for data in range(len(train_data)):
     #separate labels and inputs, replace labels with bias column!!!
-    input = train_data.iloc[data]
-    label = input[0]
-    labels.append(label)
-    #labels.append(input[0]) this messes it all up for some reason
-    input = input.to_numpy()
-    #replace first column with bias of ones rather than inserting ANOTHER column since the labels are already stored in the array
-    input[0] = 1
-    input = normalize(input) #normalize the data or else it gets all wonky
-    curr_epoch = 0
-    while curr_epoch <= epoch:
+        input = train_data.iloc[data]
+        label = input[0]
+        labels.append(label)
+        #labels.append(input[0]) this messes it all up for some reason
+        input = input.to_numpy()
+        #replace first column with bias of ones rather than inserting ANOTHER column since the labels are already stored in the array
+        input[0] = 1
+        input = normalize(input) #normalize the data or else it gets all wonky
+    
     #begin forward pass from Dr. Harrison's code
         hidden_input = np.dot(list(np.array(hidden_weights).transpose()), input)
         #https://www.geeksforgeeks.org/python-map-function/
