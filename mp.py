@@ -58,7 +58,7 @@ for i in range(num_nodes):
     output_weights.append(np.random.uniform(-1,1))
 
 #take from linear regression proj and pseudocode
-for data in range(12665):
+for data in range(len(train_data)):
     #separate labels and inputs, replace labels with bias column!!!
     input = train_data.iloc[data]
     label = input[0]
@@ -86,7 +86,7 @@ for data in range(12665):
         for i in range(num_nodes):
             output_weights[i] = temp_output[i] + alpha * hidden_output[i] * delta_output
         temp_hidden = hidden_weights
-        for i in range(785):
+        for i in range(num_feat):
             hidden_weights[i] = temp_hidden[i] + alpha * input[i] * gradient_hidden[i]
         
         overall_output = round(overall_output)
@@ -99,7 +99,7 @@ for data in range(12665):
 #begin test
 test_labels = []
 predictions = []
-for data in range(2115):
+for data in range(len(test_data)):
     test_input = test_data.iloc[data]
     test_label = test_input[0]
     test_labels.append(test_label)
