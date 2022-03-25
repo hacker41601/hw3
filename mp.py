@@ -74,7 +74,6 @@ for data in range(len(train_data)):
         hidden_input = np.dot(list(np.array(hidden_weights).transpose()), input)
         hidden_output = list(map(sigmoid, hidden_input))
         overall_output = sigmoid(np.dot(output_weights, hidden_output))
-        overall_output = round(overall_output)
         
     #begin back prop from Dr. Harrison's code
         delta_output = (label - overall_output) * (overall_output) * (1 - overall_output) #sigmoid prime is ov out * (1- ov out)
@@ -90,7 +89,7 @@ for data in range(len(train_data)):
         for i in range(num_feat):
             hidden_weights[i] = temp_hidden[i] + alpha * input[i] * gradient_hidden[i]
         
-        
+        overall_output = round(overall_output)
         #print(overall_output)
         curr_epoch += 1
             
