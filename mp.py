@@ -28,6 +28,9 @@ def sigmoid(exponent):
 #print(sigmoid(2))
 #it works great moving on
 
+def sigmoid_prime(exponent):
+    return (exponent * (1 - exponent))
+
 #normalize the features b/c some are really large numbers
 def normalize(dataset):
     normalized = dataset/255
@@ -77,7 +80,9 @@ for data in range(len(train_data)):
         overall_output = sigmoid(np.dot(output_weights, hidden_output))
         
     #begin back prop from Dr. Harrison's code
-        delta_output = (label - overall_output) * (overall_output) * (1 - overall_output) #sigmoid prime is ov out * (1- ov out)
+        sig_prime = sigmoid_prime(overall_output)
+        #delta_output = (label - overall_output) * (overall_output) * (1 - overall_output) #sigmoid prime is ov out * (1- ov out)
+        delta_output = (label - overall_output) * sig_prime
         delta_hidden = np.dot(delta_output, output_weights)
         gradient_hidden = np.transpose(np.outer(delta_hidden, input))
         #gradient_hidden = np.transpose(gradient_hidden)
