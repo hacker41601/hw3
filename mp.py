@@ -72,6 +72,7 @@ for data in range(len(train_data)):
     while curr_epoch <= epoch:
     #begin forward pass from Dr. Harrison's code
         hidden_input = np.dot(list(np.array(hidden_weights).transpose()), input)
+        #https://www.geeksforgeeks.org/python-map-function/
         hidden_output = list(map(sigmoid, hidden_input))
         overall_output = sigmoid(np.dot(output_weights, hidden_output))
         
