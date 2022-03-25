@@ -43,8 +43,8 @@ test_data = pd.read_csv('mnist_test_0_1.csv', header = None)
 #initialize arrays for labels, outputs, hidden weights, and output weights, as well as number of nodes
 labels = []
 outputs = []
-hidden_weights = []
-output_weights = []
+hidden_weights = [] #785 x 3
+output_weights = [] #3 x 1
 num_nodes = 3
 num_feat = len(train_data.columns)
 #print(num_feat)
@@ -76,10 +76,10 @@ for data in range(12665):
         overall_output = sigmoid(np.dot(output_weights, hidden_output))
         
     #begin back prop from Dr. Harrison's code
-        delta_output = (label - overall_output) * (overall_output) * (1 - overall_output)
+        delta_output = (label - overall_output) * (overall_output) * (1 - overall_output) #sigmoid prime is ov out * (1- ov out)
         delta_hidden = np.dot(delta_output, output_weights)
-        gradient_hidden = np.outer(delta_hidden, input)
-        gradient_hidden = np.transpose(gradient_hidden)
+        gradient_hidden = np.transpose(np.outer(delta_hidden, input))
+        #gradient_hidden = np.transpose(gradient_hidden)
         
         #updating weights similar to linear regression
         temp_output = output_weights
