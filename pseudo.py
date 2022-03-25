@@ -36,7 +36,7 @@ print(full_output)
 #calculate deltas
 
 delta_output = 0.1
-delta_hidden = np.dot(delta_outpu, weights_output)
+delta_hidden = np.dot(delta_output, weights_output)
 print(delta_hidden)
 
 gradients_hidden = np.outer(delta_hidden, input)
