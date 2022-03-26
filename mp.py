@@ -12,9 +12,6 @@
 import numpy as np
 import pandas as pd
 #import warnings
-import difflib
-#thanks to Thomas Dimeny for showing me this useful library!
-#warnings.filterwarnings('ignore')
 #originally had epoch as 42, but that took several minutes to compute
 #tried larger alphas but ended up in overflow errors
 
@@ -123,10 +120,12 @@ for data in range(len(test_data)):
     #print(overall_output)
     predictions.append(overall_output)
 
-#https://stackoverflow.com/questions/12436672/how-does-sequencematcher-ratio-works-in-difflib
-sm=difflib.SequenceMatcher(None, test_labels, predictions, autojunk = False)
-print("Accuracy: ")
-print(sm.ratio()*100)
-print(" ")
-print("Error: ")
-print(100 - (sm.ratio()*100))
+#ERIN BUCHANIEC HELPED ME W THIS PART
+finalTest = np.column_stack((test_labels, predictions))
+acc = 0
+for x in finalTest:
+    if x[0] == x[1]:
+        acc += 1
+    #print(acc)
+accTest = acc/len(test_data)
+print(accTest*100, "%")
