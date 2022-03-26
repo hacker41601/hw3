@@ -65,6 +65,7 @@ while curr_epoch <= epoch:
         input = train_data.iloc[data]
         label = input[0]
         labels.append(label)
+        #thomas dimeny helped me w these two previous lines since it was bugging
         #labels.append(input[0]) this messes it all up for some reason
         input = input.to_numpy()
         #replace first column with bias of ones rather than inserting ANOTHER column since the labels are already stored in the array
