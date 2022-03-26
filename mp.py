@@ -128,5 +128,4 @@ for x in finalTest:
         acc += 1
     #print(acc)
 accTest = acc/len(test_data)
-print("Accuracy: ")
-print(accTest*100, "%")
+print("Accuracy: ", accTest*100, "%")
