@@ -120,7 +120,7 @@ for data in range(len(test_data)):
     #print(overall_output)
     predictions.append(overall_output)
 
-#ERIN BUCHANIEC HELPED ME W THIS PART
+#ERIN BUCHANIEC HELPED ME W THIS PART! NP.column_stack is so nifty
 finalTest = np.column_stack((test_labels, predictions))
 acc = 0
 for x in finalTest:
@@ -128,4 +128,5 @@ for x in finalTest:
         acc += 1
     #print(acc)
 accTest = acc/len(test_data)
+print("Accuracy: ")
 print(accTest*100, "%")
